@@ -102,10 +102,10 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	}
 
 	/**
-	 * Component will receive prop
-	 * @definition 		SWebComponent.componentWillReceiveProp
+	 * Component will receive props
+	 * @definition 		SWebComponent.componentWillReceiveProps
 	 */
-	componentWillReceiveProp(name, newVal, oldVal) {
+	componentWillReceiveProps(nextProps, previousProps) {
 		if ( ! this._map) return;
 		this._map.setOptions(nextProps);
 	}

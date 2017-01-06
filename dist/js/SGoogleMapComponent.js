@@ -81,13 +81,13 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		}
 
 		/**
-   * Component will receive prop
-   * @definition 		SWebComponent.componentWillReceiveProp
+   * Component will receive props
+   * @definition 		SWebComponent.componentWillReceiveProps
    */
 
 	}, {
-		key: 'componentWillReceiveProp',
-		value: function componentWillReceiveProp(name, newVal, oldVal) {
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(nextProps, previousProps) {
 			if (!this._map) return;
 			this._map.setOptions(nextProps);
 		}
