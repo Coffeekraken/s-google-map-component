@@ -51,16 +51,8 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 
 			// create the map container
 			this._mapElm = document.createElement('div');
+			this._mapElm.className = this._componentNameDash + '__map';
 			this._mapElm.setAttribute('s-google-map-map', true);
-
-			// set the style to the map elm
-			__style(this._mapElm, {
-				position: 'absolute',
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: '100%'
-			});
 
 			// try to get the placeholder
 			this._placeholder = this.querySelector(this._componentNameDash + '-placeholder');
@@ -119,17 +111,6 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 	}, {
 		key: '_handlePlaceholder',
 		value: function _handlePlaceholder() {
-			// set style
-			__style(this._placeholder, {
-				position: 'absolute',
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: '100%',
-				cursor: 'pointer',
-				zIndex: 1
-			});
-
 			// listen to init the map
 			this._placeholder.addEventListener(this.props.initOn, this._onPlaceholderInit.bind(this));
 		}
@@ -191,7 +172,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
    * Css
    */
 		value: function css(componentName, componentNameDash) {
-			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay : block;\n\t\t\t\tposition : relative;\n\t\t\t}\n\t\t';
+			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay : block;\n\t\t\t\tposition : relative;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__map {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0; left: 0;\n\t\t\t\twidth: 100%; height: 100%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__placeholder {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0;\n\t\t\t\tleft: 0;\n\t\t\t\twidth: 100%;\n\t\t\t\theight: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1;\n\t\t\t}\n\t\t';
 		}
 	}, {
 		key: 'defaultProps',

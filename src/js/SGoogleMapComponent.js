@@ -1,4 +1,5 @@
 import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
+
 export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 	/**
@@ -40,6 +41,20 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 				display : block;
 				position : relative;
 			}
+			.${componentNameDash}__map {
+				position: absolute;
+				top: 0; left: 0;
+				width: 100%; height: 100%;
+			}
+			.${componentNameDash}__placeholder {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+				z-index: 1;
+			}
 		`;
 	}
 
@@ -60,16 +75,8 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 		// create the map container
 		this._mapElm = document.createElement('div');
+		this._mapElm.className = `${this._componentNameDash}__map`;
 		this._mapElm.setAttribute('s-google-map-map', true);
-
-		// set the style to the map elm
-		__style(this._mapElm, {
-			position : 'absolute',
-			top : 0,
-			left : 0,
-			width : '100%',
-			height : '100%'
-		});
 
 		// try to get the placeholder
 		this._placeholder = this.querySelector(`${this._componentNameDash}-placeholder`);
@@ -116,17 +123,6 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	 * Handle the placeholder element
 	 */
 	_handlePlaceholder() {
-		// set style
-		__style(this._placeholder, {
-			position : 'absolute',
-			top : 0,
-			left : 0,
-			width : '100%',
-			height : '100%',
-			cursor : 'pointer',
-			zIndex : 1
-		});
-
 		// listen to init the map
 		this._placeholder.addEventListener(this.props.initOn, this._onPlaceholderInit.bind(this));
 	}
