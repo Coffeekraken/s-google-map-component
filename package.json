@@ -17,6 +17,8 @@
 		"test": "node_modules/coffeekraken-testing-stack/run"
 	},
 	"keywords": [
+    "google",
+    "map",
 		"webcomponent",
 		"component",
 		"html",
