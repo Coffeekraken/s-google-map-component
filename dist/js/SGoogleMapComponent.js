@@ -18,6 +18,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * @name 			s-google-map
+ * Display a simple google map
+ * @styleguide  	Components / s-google-map
+ * @example 		html
+ * <s-google-map center="{lat: -25.363, lng: 131.044}">
+ * </s-google-map>
+ */
+
 var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 	_inherits(SGoogleMapComponent, _SGoogleMapComponentB);
 
@@ -172,7 +181,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
    * Css
    */
 		value: function css(componentName, componentNameDash) {
-			return '\n\t\t\t/**\n\t\t\t * @name \t\t\ts-google-map\n\t\t\t * Display a simple google map\n\t\t\t * @styleguide  \tComponents / s-google-map\n\t\t\t * @example \t\thtml\n\t\t\t * <s-google-map center="{lat: -25.363, lng: 131.044}">\n\t\t\t * </s-google-map>\n\t\t\t */\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay: block;\n\t\t\t\tposition: relative;\n\t\t\t\tmin-height: 50px;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__map {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0; left: 0;\n\t\t\t\twidth: 100%; height: 100%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__placeholder {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0;\n\t\t\t\tleft: 0;\n\t\t\t\twidth: 100%;\n\t\t\t\theight: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1;\n\t\t\t}\n\t\t';
+			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay: block;\n\t\t\t\tposition: relative;\n\t\t\t\tmin-height: 50px;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__map {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0; left: 0;\n\t\t\t\twidth: 100%; height: 100%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__placeholder {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0;\n\t\t\t\tleft: 0;\n\t\t\t\twidth: 100%;\n\t\t\t\theight: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1;\n\t\t\t}\n\t\t';
 		}
 	}, {
 		key: 'defaultProps',

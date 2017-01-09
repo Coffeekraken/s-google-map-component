@@ -1,5 +1,14 @@
 import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
 
+/**
+ * @name 			s-google-map
+ * Display a simple google map
+ * @styleguide  	Components / s-google-map
+ * @example 		html
+ * <s-google-map center="{lat: -25.363, lng: 131.044}">
+ * </s-google-map>
+ */
+
 export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 	/**
@@ -37,14 +46,6 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	 */
 	static css(componentName, componentNameDash) {
 		return `
-			/**
-			 * @name 			s-google-map
-			 * Display a simple google map
-			 * @styleguide  	Components / s-google-map
-			 * @example 		html
-			 * <s-google-map center="{lat: -25.363, lng: 131.044}">
-			 * </s-google-map>
-			 */
 			${componentNameDash} {
 				display: block;
 				position: relative;
