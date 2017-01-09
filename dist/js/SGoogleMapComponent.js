@@ -25,6 +25,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @example 		html
  * <s-google-map center="{lat: -25.363, lng: 131.044}">
  * </s-google-map>
+ * @see 			https://github.com/Coffeekraken/s-google-map-component
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 
