@@ -1,12 +1,13 @@
 import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
 
 /**
- * @name 			s-google-map
+ * @name 			Google map
  * Display a simple google map
- * @styleguide  	Components / s-google-map
+ * @styleguide  	Components / Google Map
  * @example 		html
  * <s-google-map center="{lat: -25.363, lng: 131.044}">
  * </s-google-map>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 
 export default class SGoogleMapComponent extends SGoogleMapComponentBase {
