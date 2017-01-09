@@ -37,9 +37,18 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	 */
 	static css(componentName, componentNameDash) {
 		return `
+			/**
+			 * @name 			s-google-map
+			 * Display a simple google map
+			 * @styleguide  	Components / s-google-map
+			 * @example 		html
+			 * <s-google-map center="{lat: -25.363, lng: 131.044}">
+			 * </s-google-map>
+			 */
 			${componentNameDash} {
-				display : block;
-				position : relative;
+				display: block;
+				position: relative;
+				min-height: 50px;
 			}
 			.${componentNameDash}__map {
 				position: absolute;

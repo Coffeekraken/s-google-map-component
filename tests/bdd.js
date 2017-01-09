@@ -1,6 +1,6 @@
 import "babel-polyfill";
 import "webcomponents.js/webcomponents-lite";
-import SInteractiveDemoComponent from '../dist/index';
+import SGoogleMapComponent from '../dist/index';
 import { expect } from 'chai'
 import testingStack from 'coffeekraken-testing-stack';
 const html = require('./fixture.html');
@@ -10,17 +10,17 @@ testingStack.mocha.injectHTML(html);
 testingStack.mocha.run();
 
 // tests
-describe('component', () => {
+describe('s-google-map', () => {
 	let component, originalContent;
 	before((done) => {
 		// grab the component
-		component = document.querySelector('component');
+		component = document.querySelector('s-google-map');
 		setTimeout(done,1000);
 	});
 	afterEach(() => {
 		component.onComponentDidUpdate = null;
 	});
-	it('Should be a cool component', () => {
+	it('Is ok cause no tests have actually been written for now...', () => {
 		expect(true).to.equal(true);
 	});
 });
