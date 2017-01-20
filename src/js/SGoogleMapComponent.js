@@ -1,13 +1,24 @@
 import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
 
 /**
+ * @class 	SGoogleMapComponent 	SGoogleMapComponentBase
+ * Provide a nice webcomponent wrapper around the google map api.
+ * @example 	html
+ * <s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
+ * </s-google-map>
+ * @see 	https://www.npmjs.com/package/google-maps
+ * @see 	https://developers.google.com/maps/documentation/javascript/
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+
+/**
  * @name 			Google map
  * Display a simple google map
  * @styleguide  	Components / Google Map
  * @example 		html
  * <s-google-map center="{lat: -25.363, lng: 131.044}" scrollwheel="false">
  * </s-google-map>
- * @see 			https://github.com/Coffeekraken/s-google-map-component
+ * @see 			https://github.com/Coffeekraken/s-google-map-component/tree/release/{version}
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 
@@ -16,6 +27,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	/**
 	 * Default props
 	 * @definition 		SWebComponent.defaultProps
+	 * @protected
 	 */
 	static get defaultProps() {
 		return {
@@ -32,12 +44,20 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 			 * @type 	{String}
 			 */
 			initOn : 'click'
+
+			/**
+			 * Support all the google api options
+			 * @prop
+			 * @name 	All others google map options
+			 * @type 	{Mixed}
+			 */
 		};
 	}
 
 	/**
 	 * Physical props
 	 * @definition 		SWebComponent.physicalProps
+	 * @protected
 	 */
 	static get physicalProps() {
 		return [];
@@ -45,6 +65,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 	/**
 	 * Css
+	 * @protected
 	 */
 	static css(componentName, componentNameDash) {
 		return `
@@ -73,6 +94,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	/**
 	 * Component will mount
 	 * @definition 		SWebComponent.componentWillMount
+	 * @protected
 	 */
 	componentWillMount() {
 		super.componentWillMount();
@@ -81,6 +103,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	/**
 	 * Mount component
 	 * @definition 		SWebComponent.componentMount
+	 * @protected
 	 */
 	componentMount() {
 		super.componentMount();
@@ -108,6 +131,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	/**
 	 * Component unmount
 	 * @definition 		SWebComponent.componentUnmount
+	 * @protected
 	 */
 	componentUnmount() {
 		super.componentUnmount();
@@ -116,6 +140,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	/**
 	 * Component will receive props
 	 * @definition 		SWebComponent.componentWillReceiveProps
+	 * @protected
 	 */
 	componentWillReceiveProps(nextProps, previousProps) {
 		if ( ! this._map) return;
@@ -126,6 +151,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	 * Render the component
 	 * Here goes the code that reflect the this.props state on the actual html element
 	 * @definition 		SWebComponent.render
+	 * @protected
 	 */
 	render() {
 		super.render();
@@ -171,7 +197,8 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 	/**
 	 * Access the google map instance
-	 * @return 	{Map} 	The google map instance
+	 * @name 	map
+	 * @type 	{Google.Map} 	The google map instance
 	 */
 	get map() {
 		return this._map;
