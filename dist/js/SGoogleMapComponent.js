@@ -19,13 +19,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
+ * @class 	SGoogleMapComponent 	SGoogleMapComponentBase
+ * Provide a nice webcomponent wrapper around the google map api.
+ * @example 	html
+ * <s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
+ * </s-google-map>
+ * @see 	https://www.npmjs.com/package/google-maps
+ * @see 	https://developers.google.com/maps/documentation/javascript/
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ */
+
+/**
  * @name 			Google map
  * Display a simple google map
- * @styleguide  	Components / Google Map
+ * @styleguide  	Webcomponents / Google Map
  * @example 		html
  * <s-google-map center="{lat: -25.363, lng: 131.044}" scrollwheel="false">
  * </s-google-map>
- * @see 			https://github.com/Coffeekraken/s-google-map-component
+ * @see 			https://github.com/Coffeekraken/s-google-map-component/tree/release/{version}
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 
@@ -45,6 +56,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		/**
    * Component will mount
    * @definition 		SWebComponent.componentWillMount
+   * @protected
    */
 		value: function componentWillMount() {
 			_get(SGoogleMapComponent.prototype.__proto__ || Object.getPrototypeOf(SGoogleMapComponent.prototype), 'componentWillMount', this).call(this);
@@ -53,6 +65,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		/**
    * Mount component
    * @definition 		SWebComponent.componentMount
+   * @protected
    */
 
 	}, {
@@ -83,6 +96,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		/**
    * Component unmount
    * @definition 		SWebComponent.componentUnmount
+   * @protected
    */
 
 	}, {
@@ -94,6 +108,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		/**
    * Component will receive props
    * @definition 		SWebComponent.componentWillReceiveProps
+   * @protected
    */
 
 	}, {
@@ -107,6 +122,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
    * Render the component
    * Here goes the code that reflect the this.props state on the actual html element
    * @definition 		SWebComponent.render
+   * @protected
    */
 
 	}, {
@@ -167,7 +183,8 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 
 		/**
    * Access the google map instance
-   * @return 	{Map} 	The google map instance
+   * @name 	map
+   * @type 	{Google.Map} 	The google map instance
    */
 
 	}, {
@@ -181,6 +198,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 
 		/**
    * Css
+   * @protected
    */
 		value: function css(componentName, componentNameDash) {
 			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay: block;\n\t\t\t\tposition: relative;\n\t\t\t\tmin-height: 50px;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__map {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0; left: 0;\n\t\t\t\twidth: 100%; height: 100%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__placeholder {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0;\n\t\t\t\tleft: 0;\n\t\t\t\twidth: 100%;\n\t\t\t\theight: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1;\n\t\t\t}\n\t\t';
@@ -192,6 +210,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		/**
    * Default props
    * @definition 		SWebComponent.defaultProps
+   * @protected
    */
 		get: function get() {
 			return {
@@ -208,12 +227,20 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
      * @type 	{String}
      */
 				initOn: 'click'
+
+				/**
+     * Support all the google api options
+     * @prop
+     * @name 	All others google map options
+     * @type 	{Mixed}
+     */
 			};
 		}
 
 		/**
    * Physical props
    * @definition 		SWebComponent.physicalProps
+   * @protected
    */
 
 	}, {

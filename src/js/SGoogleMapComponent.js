@@ -14,7 +14,7 @@ import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
 /**
  * @name 			Google map
  * Display a simple google map
- * @styleguide  	Components / Google Map
+ * @styleguide  	Webcomponents / Google Map
  * @example 		html
  * <s-google-map center="{lat: -25.363, lng: 131.044}" scrollwheel="false">
  * </s-google-map>
