@@ -32,7 +32,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * @name 			Google map
  * Display a simple google map
- * @styleguide  	Webcomponents / Google Map
+ * @styleguide  	Objects / Google Map
  * @example 		html
  * <s-google-map center="{lat: -25.363, lng: 131.044}" scrollwheel="false">
  * </s-google-map>
