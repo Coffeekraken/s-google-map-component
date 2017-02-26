@@ -193,14 +193,14 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 			return this._map;
 		}
 	}], [{
-		key: 'css',
+		key: 'defaultCss',
 
 
 		/**
    * Css
    * @protected
    */
-		value: function css(componentName, componentNameDash) {
+		value: function defaultCss(componentName, componentNameDash) {
 			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay: block;\n\t\t\t\tposition: relative;\n\t\t\t\tmin-height: 50px;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__map {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0; left: 0;\n\t\t\t\twidth: 100%; height: 100%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__placeholder {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0;\n\t\t\t\tleft: 0;\n\t\t\t\twidth: 100%;\n\t\t\t\theight: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1;\n\t\t\t}\n\t\t';
 		}
 	}, {
