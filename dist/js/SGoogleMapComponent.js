@@ -2,6 +2,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -21,23 +23,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * @class 	SGoogleMapComponent 	SGoogleMapComponentBase
  * Provide a nice webcomponent wrapper around the google map api.
+ * @styleguide  	Objects / Google Map
  * @example 	html
  * <s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
  * </s-google-map>
  * @see 	https://www.npmjs.com/package/google-maps
  * @see 	https://developers.google.com/maps/documentation/javascript/
  * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-
-/**
- * @name 			Google map
- * Display a simple google map
- * @styleguide  	Objects / Google Map
- * @example 		html
- * <s-google-map center="{lat: -25.363, lng: 131.044}" scrollwheel="false">
- * </s-google-map>
- * @see 			https://github.com/Coffeekraken/s-google-map-component/tree/release/{version}
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 
 var SGoogleMapComponent = function (_SGoogleMapComponentB) {
@@ -50,14 +42,26 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 	}
 
 	_createClass(SGoogleMapComponent, [{
-		key: 'componentWillMount',
+		key: 'shouldAcceptComponentProp',
 
+
+		/**
+   * Accept all props
+   * @definition 		SWebComponent.shouldAcceptComponentProp
+   * @protected
+   */
+		value: function shouldAcceptComponentProp(prop) {
+			return true;
+		}
 
 		/**
    * Component will mount
    * @definition 		SWebComponent.componentWillMount
    * @protected
    */
+
+	}, {
+		key: 'componentWillMount',
 		value: function componentWillMount() {
 			_get(SGoogleMapComponent.prototype.__proto__ || Object.getPrototypeOf(SGoogleMapComponent.prototype), 'componentWillMount', this).call(this);
 		}
@@ -103,6 +107,26 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		key: 'componentUnmount',
 		value: function componentUnmount() {
 			_get(SGoogleMapComponent.prototype.__proto__ || Object.getPrototypeOf(SGoogleMapComponent.prototype), 'componentUnmount', this).call(this);
+		}
+
+		/**
+   * Component will receive prop
+   * @definition 		SWebComponent.componentWillReceiveProp
+   * @protected
+   */
+
+	}, {
+		key: 'componentWillReceiveProp',
+		value: function componentWillReceiveProp(name, newVal, oldVal) {
+			console.log('ddd', name, newVal);
+			switch (name) {
+				case 'skin':
+					console.log('coco', name, newVal);
+					this._map.setOptions({
+						styles: SGoogleMapComponent._registeredSkins[newVal]
+					});
+					break;
+			}
 		}
 
 		/**
@@ -175,7 +199,15 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 	}, {
 		key: '_initMap',
 		value: function _initMap() {
-			this._map = new this._google.maps.Map(this._mapElm, this.props);
+
+			var styles = this.props.styles;
+			if (this.props.skin) {
+				styles = SGoogleMapComponent._registeredSkins[this.props.skin];
+			}
+
+			this._map = new this._google.maps.Map(this._mapElm, _extends({}, this.props, {
+				styles: styles
+			}));
 			// set the component as inited
 			// used by the markers to init when the map is ok
 			this.setAttribute('inited', true);
@@ -203,6 +235,13 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		value: function defaultCss(componentName, componentNameDash) {
 			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\tdisplay: block;\n\t\t\t\tposition: relative;\n\t\t\t\tmin-height: 50px;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__map {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0; left: 0;\n\t\t\t\twidth: 100%; height: 100%;\n\t\t\t}\n\t\t\t.' + componentNameDash + '__placeholder {\n\t\t\t\tposition: absolute;\n\t\t\t\ttop: 0;\n\t\t\t\tleft: 0;\n\t\t\t\twidth: 100%;\n\t\t\t\theight: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tz-index: 1;\n\t\t\t}\n\t\t';
 		}
+
+		/**
+   * Register a map style to use later through the "style" property
+   * @param 		{String} 		name 		The name of the style to register
+   * @param 		{Object} 		skin 		The skin object
+   */
+
 	}, {
 		key: 'defaultProps',
 
@@ -229,6 +268,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 				initOn: 'click'
 
 				/**
+     * @name 	Google Map API
      * Support all the google api options
      * @prop
      * @name 	All others google map options
@@ -252,5 +292,12 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 
 	return SGoogleMapComponent;
 }(_coffeekrakenSGoogleMapComponentBase2.default);
+
+SGoogleMapComponent._registeredSkins = {};
+
+SGoogleMapComponent.registerSkin = function (name, skin) {
+	// save the new skin
+	SGoogleMapComponent._registeredSkins[name] = skin;
+};
 
 exports.default = SGoogleMapComponent;

@@ -1,8 +1,10 @@
 import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
 
 /**
- * @class 	SGoogleMapComponent 	SGoogleMapComponentBase
+ * @name 		SGoogleMapComponent
+ * @extends 	SGoogleMapComponentBase
  * Provide a nice webcomponent wrapper around the google map api.
+ * @styleguide  	Objects / Google Map
  * @example 	html
  * <s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
  * </s-google-map>
@@ -11,16 +13,6 @@ import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
  * @author 	Olivier Bossel <olivier.bossel@gmail.com>
  */
 
-/**
- * @name 			Google map
- * Display a simple google map
- * @styleguide  	Objects / Google Map
- * @example 		html
- * <s-google-map center="{lat: -25.363, lng: 131.044}" scrollwheel="false">
- * </s-google-map>
- * @see 			https://github.com/Coffeekraken/s-google-map-component/tree/release/{version}
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
 
 export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
@@ -43,15 +35,23 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 			 * @prop
 			 * @type 	{String}
 			 */
-			initOn : 'click'
+			initOn : 'click',
 
 			/**
+			 * Specify a registered skin to use. The skin has to be registered through the static ```SGoogleMapComponent.registerSkin``` method.
+			 * @prop
+			 * @type 	{String}
+			 */
+			skin : null
+
+			/**
+			 * @name 	Google Map API
 			 * Support all the google api options
 			 * @prop
 			 * @name 	All others google map options
 			 * @type 	{Mixed}
 			 */
-		};
+		 };
 	}
 
 	/**
@@ -89,6 +89,27 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 				z-index: 1;
 			}
 		`;
+	}
+
+	static _registeredSkins = {};
+
+	/**
+	 * Register a map style to use later through the "style" property
+	 * @param 		{String} 		name 		The name of the style to register
+	 * @param 		{Object} 		skin 		The skin object
+	 */
+	static registerSkin = function(name, skin) {
+		// save the new skin
+		SGoogleMapComponent._registeredSkins[name] = skin;
+	}
+
+	/**
+	 * Accept all props
+	 * @definition 		SWebComponent.shouldAcceptComponentProp
+	 * @protected
+	 */
+	shouldAcceptComponentProp(prop) {
+		return true;
 	}
 
 	/**
@@ -135,6 +156,23 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	 */
 	componentUnmount() {
 		super.componentUnmount();
+	}
+
+	/**
+	 * Component will receive prop
+	 * @definition 		SWebComponent.componentWillReceiveProp
+	 * @protected
+	 */
+	componentWillReceiveProp(name, newVal, oldVal) {
+		console.log('ddd', name, newVal);
+		switch (name) {
+			case 'skin':
+				console.log('coco', name, newVal);
+				this._map.setOptions({
+					styles : SGoogleMapComponent._registeredSkins[newVal]
+				});
+			break;
+		}
 	}
 
 	/**
@@ -189,7 +227,16 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	 * Init the map
 	 */
 	_initMap() {
-		this._map = new this._google.maps.Map(this._mapElm, this.props);
+
+		let styles = this.props.styles;
+		if (this.props.skin) {
+			styles = SGoogleMapComponent._registeredSkins[this.props.skin];
+		}
+
+		this._map = new this._google.maps.Map(this._mapElm, {
+			...this.props,
+			styles
+		});
 		// set the component as inited
 		// used by the markers to init when the map is ok
 		this.setAttribute('inited', true);

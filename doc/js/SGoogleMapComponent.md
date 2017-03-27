@@ -1,7 +1,10 @@
-# SGoogleMapComponent  extends SGoogleMapComponentBase
+# SGoogleMapComponent
+
+Extends **SGoogleMapComponentBase**
+
 Provide a nice webcomponent wrapper around the google map api.
 
-#### Example
+### Example
 ```html
 	<s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
 </s-google-map>
@@ -11,23 +14,6 @@ See more : [https://developers.google.com/maps/documentation/javascript/](https:
 Author : Olivier Bossel <olivier.bossel@gmail.com>
 
 
-
-## Examples
-
-Here's some usage examples.
-
-### Google map
-
-Display a simple google map
-
-#### Example
-```html
-	<s-google-map center="{lat: -25.363, lng: 131.044}" scrollwheel="false">
-</s-google-map>
-```
-See more : [https://github.com/Coffeekraken/s-google-map-component/tree/release/0.0.1](https://github.com/Coffeekraken/s-google-map-component/tree/release/0.0.1)
-
-Author : Olivier Bossel <olivier.bossel@gmail.com>
 
 
 ## Attributes
@@ -52,6 +38,15 @@ Type : **{ [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Referen
 Default : **click**
 
 
+### skin
+
+Specify a registered skin to use. The skin has to be registered through the static ```SGoogleMapComponent.registerSkin``` method.
+
+Type : **{ [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String) }**
+
+Default : **null**
+
+
 ### All others google map options
 
 Support all the google api options
@@ -68,3 +63,19 @@ Type : **{ Mixed }**
 Access the google map instance
 
 Type : **{ Google.Map }**
+
+
+## Methods
+
+
+### registerSkin
+
+Register a map style to use later through the "style" property
+
+
+Name  |  Type  |  Description  |  Status  |  Default
+------------  |  ------------  |  ------------  |  ------------  |  ------------
+name  |  **{ [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String) }**  |  The name of the style to register  |  required  |
+skin  |  **{ [Object](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object) }**  |  The skin object  |  required  |
+
+Default : **function(name, skin) {**
