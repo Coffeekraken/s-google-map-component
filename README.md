@@ -28,7 +28,7 @@ npm install coffeekraken-s-google-map-component --save
 ```
 
 <a name="readme-get-started"></a>
-## Get Started
+## Get Started
 
 First, import the component into your javascript file like so:
 
@@ -43,7 +43,7 @@ Then simply use it inside your html like so:
 ```
 
 <a id="readme-browsers-support"></a>
-## Browsers support
+## Browsers support
 
 * Chrome *(latest 2)*
 * Firefox *(latest 2)*

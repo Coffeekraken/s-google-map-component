@@ -21,7 +21,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * @class 	SGoogleMapComponent 	SGoogleMapComponentBase
+ * @name 		SGoogleMapComponent
+ * @extends 	SGoogleMapComponentBase
  * Provide a nice webcomponent wrapper around the google map api.
  * @styleguide  	Objects / Google Map
  * @example 	html
@@ -265,7 +266,14 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
      * @prop
      * @type 	{String}
      */
-				initOn: 'click'
+				initOn: 'click',
+
+				/**
+     * Specify a registered skin to use. The skin has to be registered through the static ```SGoogleMapComponent.registerSkin``` method.
+     * @prop
+     * @type 	{String}
+     */
+				skin: null
 
 				/**
      * @name 	Google Map API
