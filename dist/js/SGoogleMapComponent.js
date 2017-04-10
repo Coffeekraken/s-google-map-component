@@ -119,10 +119,8 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 	}, {
 		key: 'componentWillReceiveProp',
 		value: function componentWillReceiveProp(name, newVal, oldVal) {
-			console.log('ddd', name, newVal);
 			switch (name) {
 				case 'skin':
-					console.log('coco', name, newVal);
 					this._map.setOptions({
 						styles: SGoogleMapComponent._registeredSkins[newVal]
 					});
@@ -200,12 +198,10 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 	}, {
 		key: '_initMap',
 		value: function _initMap() {
-
 			var styles = this.props.styles;
 			if (this.props.skin) {
 				styles = SGoogleMapComponent._registeredSkins[this.props.skin];
 			}
-
 			this._map = new this._google.maps.Map(this._mapElm, _extends({}, this.props, {
 				styles: styles
 			}));

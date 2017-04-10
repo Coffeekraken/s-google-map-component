@@ -44,8 +44,6 @@ Specify a registered skin to use. The skin has to be registered through the stat
 
 Type : **{ [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String) }**
 
-Default : **null**
-
 
 ### All others google map options
 
@@ -78,4 +76,4 @@ Name  |  Type  |  Description  |  Status  |  Default
 name  |  **{ [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String) }**  |  The name of the style to register  |  required  |
 skin  |  **{ [Object](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object) }**  |  The skin object  |  required  |
 
-Default : **function(name, skin) {**
+**Static**
