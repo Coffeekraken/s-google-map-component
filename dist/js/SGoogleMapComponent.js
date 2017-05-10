@@ -65,6 +65,9 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		key: 'componentWillMount',
 		value: function componentWillMount() {
 			_get(SGoogleMapComponent.prototype.__proto__ || Object.getPrototypeOf(SGoogleMapComponent.prototype), 'componentWillMount', this).call(this);
+
+			// save the markers that are in the map
+			this._markers = [];
 		}
 
 		/**
@@ -94,8 +97,15 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 				this._internalInit();
 			}
 
+			// listen for new markers
+			this.addEventListener('new-google-map-marker', this._onNewMarker.bind(this));
+			this.addEventListener('remove-google-map-marker', this._onMarkerRemoved.bind(this));
+
 			// append the map elm
 			this.appendChild(this._mapElm);
+
+			// dispatch an event to say that the map is ready
+			this.dispatchComponentEvent('ready');
 		}
 
 		/**
@@ -166,6 +176,34 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		}
 
 		/**
+   * When a new marker is added to the map
+   * @param 	{Event} 	e 		The event
+   */
+
+	}, {
+		key: '_onNewMarker',
+		value: function _onNewMarker(e) {
+			// check if already savec
+			if (this._markers.indexOf(e.detail) !== -1) return;
+			// save the new marker
+			this._markers.push(e.detail);
+		}
+
+		/**
+   * When a marker is removed from the map
+   * @param  	{Event} 	e 		The event
+   */
+
+	}, {
+		key: '_onMarkerRemoved',
+		value: function _onMarkerRemoved(e) {
+			var idx = this._markers.indexOf(e.detail);
+			if (idx !== -1) {
+				this._markers.splice(idx, 1);
+			}
+		}
+
+		/**
    * Proxy function of placeholder init listener
    */
 
@@ -202,7 +240,7 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 			if (this.props.skin) {
 				styles = SGoogleMapComponent._registeredSkins[this.props.skin];
 			}
-			this._map = new this._google.maps.Map(this._mapElm, _extends({}, this.props, {
+			this._map = new this.google.maps.Map(this._mapElm, _extends({}, this.props, {
 				styles: styles
 			}));
 			// set the component as inited
@@ -211,15 +249,44 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 		}
 
 		/**
+   * Fit the map to the markers
+   * @param  {Array<Google.Maps.Marker>}  	[markers=this.markers] 		The markers to fit the map to
+   */
+
+	}, {
+		key: 'fitToMarkers',
+		value: function fitToMarkers() {
+			var markers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this._markers;
+
+			var bounds = new this.google.maps.LatLngBounds();
+			for (var i = 0; i < markers.length; i++) {
+				bounds.extend(markers[i].getPosition());
+			}
+			this.map.fitBounds(bounds);
+		}
+
+		/**
    * Access the google map instance
    * @name 	map
-   * @type 	{Google.Map} 	The google map instance
+   * @type 	{Google.Map}
    */
 
 	}, {
 		key: 'map',
 		get: function get() {
 			return this._map;
+		}
+
+		/**
+   * Access all the google markers instances
+   * @name  markers
+   * @type 	{Array<Google.Maps.Marker>}
+   */
+
+	}, {
+		key: 'markers',
+		get: function get() {
+			return this._markers;
 		}
 	}], [{
 		key: 'defaultCss',
