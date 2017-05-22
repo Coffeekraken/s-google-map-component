@@ -6,14 +6,11 @@ import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
  * Provide a nice webcomponent wrapper around the google map api.
  * @styleguide  	Objects / Google Map
  * @example 	html
- * <s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
- * </s-google-map>
+ * <s-google-map center="{lat: -25.363, lng: 131.044}"></s-google-map>
  * @see 	https://www.npmjs.com/package/google-maps
  * @see 	https://developers.google.com/maps/documentation/javascript/
  * @author 	Olivier Bossel <olivier.bossel@gmail.com>
  */
-
-
 export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 	/**
