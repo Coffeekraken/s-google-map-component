@@ -24,7 +24,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @name 		SGoogleMapComponent
  * @extends 	SGoogleMapComponentBase
  * Provide a nice webcomponent wrapper around the google map api.
- * @styleguide  	Objects / Google Map
  * @example 	html
  * <s-google-map center="{lat: -25.363, lng: 131.044}"></s-google-map>
  * @see 	https://www.npmjs.com/package/google-maps
