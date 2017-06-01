@@ -6,8 +6,7 @@ Provide a nice webcomponent wrapper around the google map api.
 
 ### Example
 ```html
-	<s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
-</s-google-map>
+	<s-google-map center="{lat: -25.363, lng: 131.044}"></s-google-map>
 ```
 See more : [https://developers.google.com/maps/documentation/javascript/](https://developers.google.com/maps/documentation/javascript/)
 
@@ -63,6 +62,13 @@ Access the google map instance
 Type : **{ Google.Map }**
 
 
+### markers
+
+Access all the google markers instances
+
+Type : **{ Array<Google.Maps.Marker> }**
+
+
 ## Methods
 
 
@@ -77,3 +83,13 @@ name  |  **{ [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Refer
 skin  |  **{ [Object](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object) }**  |  The skin object  |  required  |
 
 **Static**
+
+
+### fitToMarkers
+
+Fit the map to the markers
+
+
+Name  |  Type  |  Description  |  Status  |  Default
+------------  |  ------------  |  ------------  |  ------------  |  ------------
+markers  |  **{ Array<Google.Maps.Marker> }**  |  The markers to fit the map to  |  optional  |  this.markers
