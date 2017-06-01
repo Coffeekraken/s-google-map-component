@@ -4,16 +4,12 @@ import SGoogleMapComponentBase from 'coffeekraken-s-google-map-component-base'
  * @name 		SGoogleMapComponent
  * @extends 	SGoogleMapComponentBase
  * Provide a nice webcomponent wrapper around the google map api.
- * @styleguide  	Objects / Google Map
  * @example 	html
- * <s-google-map api-key="..." center="{lat: -25.363, lng: 131.044}">
- * </s-google-map>
+ * <s-google-map center="{lat: -25.363, lng: 131.044}"></s-google-map>
  * @see 	https://www.npmjs.com/package/google-maps
  * @see 	https://developers.google.com/maps/documentation/javascript/
  * @author 	Olivier Bossel <olivier.bossel@gmail.com>
  */
-
-
 export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 	/**
@@ -119,6 +115,10 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	 */
 	componentWillMount() {
 		super.componentWillMount();
+
+		// save the markers that are in the map
+		this._markers = [];
+
 	}
 
 	/**
@@ -145,8 +145,15 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 			this._internalInit();
 		}
 
+		// listen for new markers
+		this.addEventListener('new-google-map-marker', this._onNewMarker.bind(this));
+		this.addEventListener('remove-google-map-marker', this._onMarkerRemoved.bind(this));
+
 		// append the map elm
 		this.appendChild(this._mapElm);
+
+		// dispatch an event to say that the map is ready
+		this.dispatchComponentEvent('ready');
 	}
 
 	/**
@@ -202,6 +209,28 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	}
 
 	/**
+	 * When a new marker is added to the map
+	 * @param 	{Event} 	e 		The event
+	 */
+	_onNewMarker(e) {
+		// check if already savec
+		if (this._markers.indexOf(e.detail) !== -1) return;
+		// save the new marker
+		this._markers.push(e.detail);
+	}
+
+	/**
+	 * When a marker is removed from the map
+	 * @param  	{Event} 	e 		The event
+	 */
+	_onMarkerRemoved(e) {
+		const idx = this._markers.indexOf(e.detail);
+		if (idx !== -1) {
+			this._markers.splice(idx,1);
+		}
+	}
+
+	/**
 	 * Proxy function of placeholder init listener
 	 */
 	_onPlaceholderInit() {
@@ -229,7 +258,7 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 		if (this.props.skin) {
 			styles = SGoogleMapComponent._registeredSkins[this.props.skin];
 		}
-		this._map = new this._google.maps.Map(this._mapElm, {
+		this._map = new this.google.maps.Map(this._mapElm, {
 			...this.props,
 			styles
 		});
@@ -239,11 +268,32 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 	}
 
 	/**
+	 * Fit the map to the markers
+	 * @param  {Array<Google.Maps.Marker>}  	[markers=this.markers] 		The markers to fit the map to
+	 */
+	fitToMarkers(markers = this._markers) {
+		const bounds = new this.google.maps.LatLngBounds();
+		for (let i = 0; i < markers.length; i++) {
+			bounds.extend(markers[i].getPosition());
+		}
+		this.map.fitBounds(bounds);
+	}
+
+	/**
 	 * Access the google map instance
 	 * @name 	map
-	 * @type 	{Google.Map} 	The google map instance
+	 * @type 	{Google.Map}
 	 */
 	get map() {
 		return this._map;
+	}
+
+	/**
+	 * Access all the google markers instances
+	 * @name  markers
+	 * @type 	{Array<Google.Maps.Marker>}
+	 */
+	get markers() {
+		return this._markers;
 	}
 }
