@@ -41,7 +41,7 @@ Provide a simple and powerful webcomponent wrapper to create google maps.
 2. [Install](#readme-install)
 3. [Get Started](#readme-get-started)
 4. [Javascript API](doc/js)
-5. [Sugar Web Components Documentation](https://github.com/Coffeekraken/sugar/blob/master/doc/webcomponent.md)
+5. [Sugar Web Components Documentation](https://github.com/Coffeekraken/sugar/blob/master/doc/js/webcomponents.md)
 6. [Browsers support](#readme-browsers-support)
 7. [Contribute](#readme-contribute)
 8. [Who are Coffeekraken?](#readme-who-are-coffeekraken)
