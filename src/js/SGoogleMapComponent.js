@@ -101,10 +101,10 @@ export default class SGoogleMapComponent extends SGoogleMapComponentBase {
 
 	/**
 	 * Accept all props
-	 * @definition 		SWebComponent.shouldAcceptComponentProp
+	 * @definition 		SWebComponent.shouldComponentAcceptProp
 	 * @protected
 	 */
-	shouldAcceptComponentProp(prop) {
+	shouldComponentAcceptProp(prop) {
 		return true;
 	}
 
