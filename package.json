@@ -1,6 +1,6 @@
 {
   "name": "coffeekraken-s-google-map-component",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Provide a simple and powerful webcomponent wrapper to create google maps.",
   "main": "dist/index.js",
   "homepage": "http://coffeekraken.io",
@@ -46,8 +46,8 @@
   }],
   "license": "MIT",
   "dependencies": {
-    "coffeekraken-sugar": "^0.0.2",
-    "coffeekraken-s-google-map-component-base": "^0.0.2"
+    "coffeekraken-sugar": "^1.0.0",
+    "coffeekraken-s-google-map-component-base": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
