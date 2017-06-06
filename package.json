@@ -1,6 +1,6 @@
 {
   "name": "coffeekraken-s-google-map-component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Provide a simple and powerful webcomponent wrapper to create google maps.",
   "main": "dist/index.js",
   "homepage": "http://coffeekraken.io",
