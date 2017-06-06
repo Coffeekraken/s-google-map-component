@@ -40,15 +40,15 @@ var SGoogleMapComponent = function (_SGoogleMapComponentB) {
 	}
 
 	_createClass(SGoogleMapComponent, [{
-		key: 'shouldAcceptComponentProp',
+		key: 'shouldComponentAcceptProp',
 
 
 		/**
    * Accept all props
-   * @definition 		SWebComponent.shouldAcceptComponentProp
+   * @definition 		SWebComponent.shouldComponentAcceptProp
    * @protected
    */
-		value: function shouldAcceptComponentProp(prop) {
+		value: function shouldComponentAcceptProp(prop) {
 			return true;
 		}
 
