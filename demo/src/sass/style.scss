@@ -1,0 +1,18 @@
+@import 'node_modules/coffeekraken-sugar/index';
+@import 'node_modules/coffeekraken-s-typography-component/index';
+@include s-init();
+@include s-classes();
+@include s-typography-classes();
+body {
+	padding: s-space(big);
+}
+s-google-map {
+	@include s-depth(5);
+	width: calc(50% - 20px);
+	float:left;
+	margin-right:10px;
+	margin-left:10px;
+	margin-bottom:20px;
+	@include s-ratio(16/9);
+	border:5px white solid;
+}
