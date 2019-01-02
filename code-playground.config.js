@@ -59,7 +59,6 @@ module.exports = {
 		js : {
 			language : 'js',
 			data : `
-				import 'webcomponents.js/webcomponents-lite'
 				import SGoogleMapComponent from './dist/index'
 
 				// register some skins

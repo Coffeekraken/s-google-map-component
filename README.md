@@ -29,6 +29,8 @@
 
 Provide a simple and powerful webcomponent wrapper to create google maps.
 
+[![View demo](http://components.coffeekraken.io/assets/img/view-demo.png)](http://components.coffeekraken.io/app/s-google-map-component)
+
 ## Features
 
 - Simple wrapper of the google API means that it support all features
